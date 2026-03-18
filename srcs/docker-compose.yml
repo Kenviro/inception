@@ -1,0 +1,22 @@
+service: 
+  nginx:
+    image: requirements/nginx
+    volumes:
+      - wordpress:/wordpress/path
+    ports:
+      - "443:443" # 443:???
+
+  # wordpress:
+  #   image: requirements/wordpress
+  #   volumes:
+  #     - wordpress:/wordpress/path
+
+  # mariaDB:
+  #   image: requirements/mariaDB
+  #   volumes:
+  #     - DB:/DB/path
+
+volumes:
+  wordpress:
+
+  # DB:
