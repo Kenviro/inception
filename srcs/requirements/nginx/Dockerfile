@@ -1,7 +1,8 @@
 FROM debian:bullseye
 
-RUN apt-get update \
-	apt-get upgrade -y \
+RUN apt-get update && \
+	apt-get upgrade -y && \
+	apt-get install -y \
 	nginx \
 	openssl
 
@@ -12,6 +13,6 @@ RUN openssl req -x509 -newkey rsa:2048 \
 
 COPY conf/nginx.conf etc/nginx/conf.d/
 
-EXPOSE 8080
+EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
