@@ -6,6 +6,8 @@ RUN apt-get update && \
 	nginx \
 	openssl
 
+RUN mkdir -p /etc/nginx/ssl
+
 RUN openssl req -x509 -newkey rsa:2048 \
 	-keyout etc/nginx/ssl/key.pem \
 	-out etc/nginx/ssl/req.pem \
