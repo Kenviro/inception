@@ -1,4 +1,4 @@
-service: 
+services: 
   nginx:
     image: requirements/nginx
     restart: always
