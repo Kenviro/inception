@@ -21,6 +21,12 @@ down:
 	@docker compose $(DCPATH) down
 	@echo "$(CYAN)Docker container stopped !$(RESET)"
 
+fclean: down
+    sudo rm -rf /home/cgoldens/data
+    sudo docker volume rm -f srcs_wp_database
+    sudo docker volume rm -f srcs_wp_files
+    sudo docker system prune -af
+
 re: down up
 
 .PHONY: all up down re
