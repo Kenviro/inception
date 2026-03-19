@@ -27,6 +27,6 @@ fclean: down
 	sudo docker volume rm -f srcs_wp_files
 	sudo docker system prune -af
 
-re: down up
+re: fclean up
 
 .PHONY: all up down re fclean
