@@ -14,7 +14,9 @@ services:
 
   wordpress:
     container_name: wordpress
-    image: wordpress:latest
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
     restart: unless-stopped
     environment:
       - WORDPRESS_DB_NAME=wordpress
