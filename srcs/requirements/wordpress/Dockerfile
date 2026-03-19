@@ -10,8 +10,6 @@ RUN 	apt-get update && \
 		php8.2-cli \
 		php8.2-opcache \
 		php8.2-readline \
-		php8.2-redis \
-		redis-tools \
 		mariadb-client \
 		&& rm -rf /var/lib/apt/lists/*
 
