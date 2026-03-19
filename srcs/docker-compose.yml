@@ -4,8 +4,7 @@ services:
     build:
       context: ./requirements/nginx
       dockerfile: Dockerfile
-    # image: nginx:latest
-    restart: always
+    restart: unless-stopped
     volumes:
       - wordpress:/var/www/html
     ports:
@@ -16,7 +15,7 @@ services:
   wordpress:
     container_name: wordpress
     image: wordpress:latest
-    restart: always
+    restart: unless-stopped
     environment:
       - WORDPRESS_DB_NAME=wordpress
       - WORDPRESS_TABLE_PREFIX=wp_
@@ -34,7 +33,7 @@ services:
   mariaDB:
     container_name: mariaDB
     image: mariadb:latest
-    restart: always
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_USER=root
