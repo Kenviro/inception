@@ -1,22 +1,49 @@
 service: 
   nginx:
     image: requirements/nginx
+    restart: always
     volumes:
-      - wordpress:/wordpress/path
+      - wordpress:/var/www/html
     ports:
-      - "443:443" # 443:???
+      - "443:8080" # 443:???
+    network:
+      - inception
 
-  # wordpress:
-  #   image: requirements/wordpress
-  #   volumes:
-  #     - wordpress:/wordpress/path
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    environment:
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_TABLE_PREFIX=wp_
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=password
+    depends_on:
+      - nginx
+      - mariaDB
+    volumes:
+      - wordpress:/var/www/html/wp-content
+    network:
+      - inception
 
-  # mariaDB:
-  #   image: requirements/mariaDB
-  #   volumes:
-  #     - DB:/DB/path
+  mariaDB:
+    image: mariadb:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=wordpress
+    volumes:
+      - DB:/DB/path
+    network:
+      - inception
 
 volumes:
   wordpress:
 
-  # DB:
+  DB:
+
+network:
+  inception:
+    driver: bridge

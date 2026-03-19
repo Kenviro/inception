@@ -12,7 +12,7 @@ all: up
 
 up:
 	@echo "$(YELLOW)Launching docker container...$(RESET)"
-	@mkdir -p /home/cgoldens/data/
+	@mkdir -p /home/ktintim-/data/
 	@docker compose $(DCPATH) up -d
 	@echo "$(CYAN)Launching completed!$(RESET)"
 
