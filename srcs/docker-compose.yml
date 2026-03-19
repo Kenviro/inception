@@ -6,7 +6,7 @@ service:
       - wordpress:/var/www/html
     ports:
       - "443:8080" # 443:???
-    network:
+    networks:
       - inception
 
   wordpress:
@@ -23,7 +23,7 @@ service:
       - mariaDB
     volumes:
       - wordpress:/var/www/html/wp-content
-    network:
+    networks:
       - inception
 
   mariaDB:
@@ -36,7 +36,7 @@ service:
       - MYSQL_DATABASE=wordpress
     volumes:
       - DB:/DB/path
-    network:
+    networks:
       - inception
 
 volumes:
@@ -44,6 +44,6 @@ volumes:
 
   DB:
 
-network:
+networks:
   inception:
     driver: bridge
