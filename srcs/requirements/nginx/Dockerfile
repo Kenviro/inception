@@ -11,8 +11,8 @@ RUN mkdir -p /etc/nginx/ssl
 
 RUN openssl req -x509 -nodes \
 	-newkey rsa:2048 \
-	-keyout etc/nginx/ssl/key.pem \
-	-out etc/nginx/ssl/req.pem \
+	-keyout etc/nginx/ssl/key.key \
+	-out etc/nginx/ssl/req.crt \
 	-subj "/C=CH/ST=VD/L=Lausanne/O=42/OU=42/CN=ktintim-.42.fr/UID=ktintim-"
 
 # RUN rm -rf etc/nging/nginx.conf
