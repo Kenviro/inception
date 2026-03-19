@@ -1,13 +1,14 @@
 services: 
   nginx:
-    build:
-      context: .
-      dockerfile: requirements/nginx
+    # build:
+    #   context: .
+    #   dockerfile: requirements/nginx
+    image: nginx:latest
     restart: always
     volumes:
       - wordpress:/var/www/html
     ports:
-      - "443:8080" # 443:???
+      - "443:443" # 443:???
     networks:
       - inception
 
