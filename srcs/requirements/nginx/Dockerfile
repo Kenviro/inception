@@ -15,8 +15,8 @@ RUN openssl req -x509 -nodes \
 	-out etc/nginx/ssl/req.pem \
 	-subj "/C=CH/ST=VD/L=Lausanne/O=42/OU=42/CN=ktintim-.42.fr/UID=ktintim-"
 
-RUN rm -rf etc/nging/nginx.conf
-COPY conf/nginx.conf etc/nginx/nginx.conf
+# RUN rm -rf etc/nging/nginx.conf
+COPY conf/nginx.conf etc/nginx/conf.d/defautl.conf
 
 EXPOSE 443
 
