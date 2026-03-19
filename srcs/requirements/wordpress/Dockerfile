@@ -4,12 +4,8 @@ RUN 	apt-get update && \
 		apt-get upgrade -y && \
 		apt-get install -y \
 		curl \
-		php8.2-common \
 		php8.2-fpm \
 		php8.2-mysql \
-		php8.2-cli \
-		php8.2-opcache \
-		php8.2-readline \
 		mariadb-client \
 		&& rm -rf /var/lib/apt/lists/*
 
