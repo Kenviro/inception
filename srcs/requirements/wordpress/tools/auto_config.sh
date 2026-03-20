@@ -49,4 +49,4 @@ fi
 
 # --- 3. LANCEMENT DE PHP-FPM ---
 echo "Démarrage de PHP-FPM..."
-exec /usr/sbin/php-fpm -F
+exec /usr/sbin/php-fpm8.2 -F
