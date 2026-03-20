@@ -6,8 +6,8 @@ RUN 	apt-get update && \
 		curl \
 		php8.2-fpm \
 		php8.2-mysql \
-		mariadb-client \
-		&& rm -rf /var/lib/apt/lists/*
+		mariadb-client && \
+		rm -rf /var/lib/apt/lists/*
 
 COPY	./conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
 

@@ -29,7 +29,9 @@ services:
 
   mariaDB:
     container_name: mariaDB
-    image: mariadb:latest
+    build:
+      context: ./requirements/mariaDB
+      dockerfile: Dockerfile
     restart: unless-stopped
     env_file: .env
     volumes:

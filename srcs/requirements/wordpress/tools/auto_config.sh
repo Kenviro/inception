@@ -13,12 +13,6 @@ echo "Test de connexion vers $SQL_HOST..."
 # On tente une connexion simple sans attendre, pour voir l'erreur
 mariadb-admin ping -h"$SQL_HOST" -u"$SQL_USER" -p"$SQL_PASSWORD"
 
-# Ensuite on lance la boucle d'attente classique
-#until mariadb-admin ping -h"$SQL_HOST" -u"$SQL_USER" -p"$SQL_PASSWORD" --silent; do
-#    echo "Connexion échouée, nouvelle tentative..."
-#    sleep 2
-#done
-
 echo "MariaDB est prête !"
 
 # --- 2. INSTALLATION DE WORDPRESS ---
