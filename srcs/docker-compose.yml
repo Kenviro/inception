@@ -31,11 +31,7 @@ services:
     container_name: mariaDB
     image: mariadb:latest
     restart: unless-stopped
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=password
-      - MYSQL_DATABASE=wordpress
+    env_file: .env
     volumes:
       - DB:/DB/path
     networks:
