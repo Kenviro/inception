@@ -20,7 +20,7 @@ services:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
     volumes:
-      - wordpress:/var/www/html/wp-content
+      - wordpress:/var/www/html
     env_file: .env
     depends_on:
       mariadb:
