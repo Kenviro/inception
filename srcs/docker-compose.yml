@@ -48,7 +48,7 @@ services:
       - inception
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "${SQL_HOST}", "-u", "${SQL_USER}", "-p${SQL_ROOT_PASSWORD}"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${SQL_ROOT_PASSWORD}"]
       interval: 5s
       timeout: 3s
       retries: 5
