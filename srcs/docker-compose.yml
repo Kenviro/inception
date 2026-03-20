@@ -7,6 +7,9 @@ services:
     restart: unless-stopped
     volumes:
       - wordpress:/var/www/html
+    depends_on:
+      - wordpress:
+        condition: service_healthy
     ports:
       - "443:443" # 443:???
     networks:
@@ -20,12 +23,18 @@ services:
     restart: unless-stopped
     env_file: .env
     depends_on:
-      - nginx
-      - mariadb
+      - mariadb:
+        condition: service_healthy
     volumes:
       - wordpress:/var/www/html/wp-content
     networks:
       - inception
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep php-fpm8.2 > /dev/null && test -f /var/www/html/wp-config.php || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
 
   mariadb:
     container_name: mariadb
@@ -35,14 +44,20 @@ services:
     restart: unless-stopped
     env_file: .env
     volumes:
-      - DB:/DB/path
+      - DB:/var/run/mysqld
     networks:
-      - inception
+      - inception    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "${SQL_HOST}", "-u", "${SQL_USER}", "-p${SQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
 
 volumes:
   wordpress:
-
+    driver: local
   DB:
+    driver: local
 
 networks:
   inception:
