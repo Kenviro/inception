@@ -7,8 +7,7 @@ services:
     volumes:
       - wordpress:/var/www/html
     depends_on:
-      wordpress:
-        condition: service_healthy
+      - wordpress
     ports:
       - "443:443" # 443:???
     restart: unless-stopped
@@ -29,12 +28,6 @@ services:
     networks:
       - inception
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "pgrep php-fpm8.2 > /dev/null && test -f /var/www/html/wp-config.php || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
 
   mariadb:
     container_name: mariadb
