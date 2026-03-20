@@ -21,14 +21,14 @@ services:
     env_file: .env
     depends_on:
       - nginx
-      - mariaDB
+      - mariadb
     volumes:
       - wordpress:/var/www/html/wp-content
     networks:
       - inception
 
-  mariaDB:
-    container_name: mariaDB
+  mariadb:
+    container_name: mariadb
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
