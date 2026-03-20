@@ -4,14 +4,14 @@ services:
     build:
       context: ./requirements/nginx
       dockerfile: Dockerfile
-    restart: unless-stopped
     volumes:
       - wordpress:/var/www/html
     depends_on:
-      - wordpress:
+      wordpress:
         condition: service_healthy
     ports:
       - "443:443" # 443:???
+    restart: unless-stopped
     networks:
       - inception
 
@@ -20,15 +20,15 @@ services:
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
-    restart: unless-stopped
-    env_file: .env
-    depends_on:
-      - mariadb:
-        condition: service_healthy
     volumes:
       - wordpress:/var/www/html/wp-content
+    env_file: .env
+    depends_on:
+      mariadb:
+        condition: service_healthy
     networks:
       - inception
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pgrep php-fpm8.2 > /dev/null && test -f /var/www/html/wp-config.php || exit 1"]
       interval: 10s
@@ -41,12 +41,12 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
-    restart: unless-stopped
-    env_file: .env
     volumes:
       - DB:/var/run/mysqld
+    env_file: .env
     networks:
       - inception
+    restart: unless-stopped
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "${SQL_HOST}", "-u", "${SQL_USER}", "-p${SQL_ROOT_PASSWORD}"]
       interval: 5s
