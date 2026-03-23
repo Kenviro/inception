@@ -13,9 +13,9 @@ echo "Test de connexion vers $SQL_HOST..."
 # On tente une connexion simple sans attendre, pour voir l'erreur
 # mariadb-admin ping -h"$SQL_HOST" -u"$SQL_USER" -p"$SQL_PASSWORD"
 
-until mysqladmin ping -h"$SQL_HOST" -u"${SQL_USER}" -p"${SQL_PASSWORD}" --silent 2>/dev/null; do
-    sleep 2
-done
+# until mysqladmin ping -h"$SQL_HOST" -u"${SQL_USER}" -p"${SQL_PASSWORD}" --silent 2>/dev/null; do
+#     sleep 2
+# done
 
 echo "MariaDB est prête !"
 
