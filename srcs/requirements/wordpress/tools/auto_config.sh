@@ -13,9 +13,9 @@ echo "Test de connexion vers $SQL_HOST..."
 # On tente une connexion simple sans attendre, pour voir l'erreur
 # mariadb-admin ping -h"$SQL_HOST" -u"$SQL_USER" -p"$SQL_PASSWORD"
 
-# until mysqladmin ping -h"$SQL_HOST" -u"${SQL_USER}" -p"${SQL_PASSWORD}" --silent 2>/dev/null; do
-#     sleep 2
-# done
+until mysqladmin ping -h"$SQL_HOST" -u"${SQL_USER}" -p"${SQL_PASSWORD}" --silent 2>/dev/null; do
+    sleep 2
+done
 
 echo "MariaDB est prête !"
 
@@ -32,7 +32,7 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
         --dbname="${SQL_DATABASE}" \
         --dbuser="${SQL_USER}" \
         --dbpass="${SQL_PASSWORD}" \
-        --dbhost=mariadb:3306 \
+        --dbhost=${SQL_HOST}:3306 \
         --path='/var/www/html'
     wp core install        --allow-root \
                         --url="https://${DOMAIN_NAME}" \
