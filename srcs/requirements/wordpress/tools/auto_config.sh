@@ -27,6 +27,7 @@ if [ ! -f "/var/www/html/wp-includes/version.php" ]; then
 fi
 
 if [ ! -f "/var/www/html/wp-config.php" ]; then
+    echo "avant wp config create"
     wp config create    --allow-root \
         --dbname="${SQL_DATABASE}" \
         --dbuser="${SQL_USER}" \
