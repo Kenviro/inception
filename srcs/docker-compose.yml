@@ -9,7 +9,7 @@ services:
     depends_on:
       - wordpress
     ports:
-      - "443:443" # 443:???
+      - "443:443"
     restart: unless-stopped
     networks:
       - inception
@@ -35,7 +35,7 @@ services:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
     volumes:
-      - DB:/var/run/mysqld
+      - DB:/var/lib/mysqld
     env_file: .env
     networks:
       - inception
