@@ -11,12 +11,17 @@ RESET = \033[0m
 all: up
 
 up:
-	@echo "$(YELLOW)Launching docker container...$(RESET)"
-	@mkdir -p /home/ktintim-/data/
-	@mkdir -p /home/ktintim-/data/mariadb/
-	@mkdir -p /home/ktintim-/data/wordpress/
-	@docker compose $(DCPATH) up -d
-	@echo "$(CYAN)Launching completed!$(RESET)"
+    @if [ -f ./srcs/.env ]; then \
+		echo "$(YELLOW)Launching docker container...$(RESET)"
+		mkdir -p /home/ktintim-/data/
+		mkdir -p /home/ktintim-/data/mariadb/
+		mkdir -p /home/ktintim-/data/wordpress/
+		docker compose $(DCPATH) up -d
+		echo "$(CYAN)Launching completed!$(RESET)"
+    else \
+        echo "❌ Missing ./srcs/.env file"; \
+        echo "👉 Please create it before running the project"; \
+    fi
 
 down:
 	@echo "$(YELLOW)Stopping docker container...$(RESET)"
