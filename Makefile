@@ -11,7 +11,7 @@ RESET = \033[0m
 all: up
 
 up:
-    @if [ -f ./srcs/.env ]; then \
+	@if [ -f ./srcs/.env ]; then \
 		echo "$(YELLOW)Launching docker container...$(RESET)"
 		mkdir -p /home/ktintim-/data/
 		mkdir -p /home/ktintim-/data/mariadb/
