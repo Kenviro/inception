@@ -18,10 +18,10 @@ up:
 		mkdir -p /home/ktintim-/data/wordpress/
 		docker compose $(DCPATH) up -d
 		echo "$(CYAN)Launching completed!$(RESET)"
-    else \
-        echo "❌ Missing ./srcs/.env file"; \
-        echo "👉 Please create it before running the project"; \
-    fi
+	else \
+		echo "❌ Missing ./srcs/.env file"; \
+		echo "👉 Please create it before running the project"; \
+	fi
 
 down:
 	@echo "$(YELLOW)Stopping docker container...$(RESET)"
