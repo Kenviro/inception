@@ -1,25 +1,11 @@
 #!/bin/bash
 
-# On se place dans le dossier du site
 cd /var/www/html
-
-# --- 1. ATTENTE DE LA BASE DE DONNÉES ---
-echo "Attente de MariaDB..."
-
-
-# --- DIAGNOSTIC RÉSEAU ---
-echo "Test de connexion vers $SQL_HOST..."
-
-# On tente une connexion simple sans attendre, pour voir l'erreur
-# mariadb-admin ping -h"$SQL_HOST" -u"$SQL_USER" -p"$SQL_PASSWORD"
 
 until mysqladmin ping -h"$SQL_HOST" -u"${SQL_USER}" -p"${SQL_PASSWORD}" --silent 2>/dev/null; do
     sleep 2
 done
 
-echo "MariaDB est prête !"
-
-# --- 2. INSTALLATION DE WORDPRESS ---
 if [ ! -f "/var/www/html/wp-includes/version.php" ]; then
     wp core download --allow-root --path='/var/www/html'
     chown -R www-data:www-data /var/www/html
@@ -49,6 +35,4 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
                         --path='/var/www/html'
 fi
 
-# --- 3. LANCEMENT DE PHP-FPM ---
-echo "Démarrage de PHP-FPM..."
 exec /usr/sbin/php-fpm8.2 -F
